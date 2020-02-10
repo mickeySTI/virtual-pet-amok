@@ -68,7 +68,7 @@ public class VirtualPet {
 
 	public void tick() {
 
-		health = getHealth() - 8;
+		health = getHealth();
 		if (getHealth() < 0) {
 			health = 0;
 		}

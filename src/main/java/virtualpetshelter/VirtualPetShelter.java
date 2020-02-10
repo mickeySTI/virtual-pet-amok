@@ -93,18 +93,43 @@ public class VirtualPetShelter {
 		}
 	}
 
-	// Display Screen
+	// Display Screens
 	public void oragnicPetStatusDisplay(Collection<VirtualPet> virtualPets) {
 		System.out.println("Name	|Hunger	|Thirst	|Boredom | Health\r\n" + "--------|-------|-------|-------");
 		for (VirtualPet pet : virtualPets) {
 			if (pet instanceof Organic) {
 				System.out.println(
-						pet.getName() + "\t|" + pet.getHunger() + "\t|" + pet.getThirst() + "\t|" + pet.getBoredom() + "\t|");
+						pet.getName() + "\t|" + pet.getHunger() + "\t|" + pet.getThirst() + "\t|" + pet.getBoredom() + "\t|" + pet.getHealth());
 			} else {
 
 			}
 		}
 	}
+	
+	public void dogCageStatusDisplay(Collection<VirtualPet> virtualPets) {
+		System.out.println("Name	|Cage Cleanliness\r\n" + "--------|-------|");
+		for (VirtualPet pet : virtualPets) {
+			if (pet instanceof OrgDog) {
+				System.out.println(
+						pet.getName() + "\t|" + pet.cageCleanliness + "\t|");
+			} else {
+				
+			}
+		}
+	}
+	
+	public void catLitterBoxDisplay(Collection<VirtualPet> virtualPets) {
+		System.out.println("Name	|Litter Box\r\n" + "--------|-------|");
+		for (VirtualPet pet : virtualPets) {
+			if (pet instanceof OrgCat) {
+				System.out.println(
+						pet.getName() + "\t|" + pet.litterBox + "\t|");
+			} else {
+				
+			}
+		}
+	}
+	
 	
 	public void roboticPetStatusDisplay(Collection<VirtualPet> virtualPets) {
 		System.out.println("Name	|Health	|Boredom |OilLevel\r\n" + "--------|-------|-------|-------");
