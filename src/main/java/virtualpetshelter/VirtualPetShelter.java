@@ -5,27 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VirtualPetShelter {
+
+
 	
-	public static int litterBox;
-	int cageCleanliness;
-	
-	
+
 	private Map<String, VirtualPet> shelter = new HashMap<String, VirtualPet>();
 
-	public int getLitter() {
-		return litterBox;
-	}
-	
 
-	
-	
 	public Collection<VirtualPet> getAllPets() {
 		return shelter.values();
 	}
 
 	public VirtualPet selectPet(String name) {
 		return shelter.get(name);
-		
+
 	}
 
 	public void addNewPet(VirtualPet pet) {
@@ -36,58 +29,59 @@ public class VirtualPetShelter {
 		this.shelter.remove(petName);
 	}
 
-	public static void feedAll(Collection<VirtualPet> virtualPets) {
+	
+	public void feedAll(Collection<VirtualPet> virtualPets) {
 		for (VirtualPet pet : virtualPets) {
 			if (pet instanceof Organic) {
 				((Organic) pet).feed();
 			}
 		}
-			
+
 	}
 
-	public static void drinkAll(Collection<VirtualPet> virtualPets) {
+	public void drinkAll(Collection<VirtualPet> virtualPets) {
 		for (VirtualPet pet : virtualPets) {
 			if (pet instanceof Organic) {
-				((Organic) pet).drink();{
-		
+				((Organic) pet).drink();
+				{
+
 				}
-		
+
 			}
 		}
 	}
-	
-	
-	
-	public static void WalkAllDogs(Collection<VirtualPet> virtualPets) {
+
+	public void WalkAllDogs(Collection<VirtualPet> virtualPets) {
 		for (VirtualPet pet : virtualPets) {
 			if (pet instanceof OrgDog) {
 				((OrgDog) pet).walkOrgDog();
+				((OrgDog) pet).cageCleanliness+=5;
 			} else if (pet instanceof RoboDog) {
-				((RobocDog) pet).walkRoboDog();
+				((RoboDog) pet).walkRoboDog();
 			} else {
 			}
 
 		}
 
 	}
-	
-	
-	
-	
-	public static void CleanOrganicDogCages(Collection<VirtualPet> virtualPets){
+
+	public void CleanOrganicDogCages(Collection<VirtualPet> virtualPets) {
 		for (VirtualPet pet : virtualPets) {
 			if (pet instanceof Organic) {
-				((Organic) pet).cleanedOrganicCages();
+				((OrgDog) pet).cleanCages();
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public void oilChangeAllRoboticPets(Collection<VirtualPet> virtualPets) {
+		for (VirtualPet pet : virtualPets) {
+			if (pet instanceof Robotic) {
+				((Robotic) pet).oilChange();
+			}
+		}
+
+	}
+
 	// To pick one specific pet
 	public void playWithAPet(String name) {
 		selectPet(name).play();
@@ -98,21 +92,38 @@ public class VirtualPetShelter {
 			pet.tick();
 		}
 	}
-	
-	
-	
-	
-	
 
 	// Display Screen
-	public void petStatusDisplay(Collection<VirtualPet> virtualPets) {
-		System.out.println("Name	|Hunger	|Thirst	|Boredom\r\n" + "--------|-------|-------|-------");
+	public void oragnicPetStatusDisplay(Collection<VirtualPet> virtualPets) {
+		System.out.println("Name	|Hunger	|Thirst	|Boredom | Health\r\n" + "--------|-------|-------|-------");
 		for (VirtualPet pet : virtualPets) {
-			System.out.println(
-					pet.getName() + "\t|" + pet.getHunger() + "\t|" + pet.getThirst() + "\t|" + pet.getBoredom());
+			if (pet instanceof Organic) {
+				System.out.println(
+						pet.getName() + "\t|" + pet.getHunger() + "\t|" + pet.getThirst() + "\t|" + pet.getBoredom() + "\t|");
+			} else {
+
+			}
 		}
 	}
-
-
+	
+	public void roboticPetStatusDisplay(Collection<VirtualPet> virtualPets) {
+		System.out.println("Name	|Health	|Boredom |OilLevel\r\n" + "--------|-------|-------|-------");
+		for (VirtualPet pet : virtualPets) {
+			if (pet instanceof Robotic) {
+				System.out.println(
+						pet.getName() + "\t|" + pet.getHealth() + "\t|" + pet.getBoredom() + "\t|"+((Robotic) pet).getOilLevel());
+			} else {
+				
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
